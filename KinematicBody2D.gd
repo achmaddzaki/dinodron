@@ -11,7 +11,10 @@ func _physics_process(delta):
 		if(Input.is_action_pressed("ui_up")):
 			currentposition.y -= jump_high
 	else:
-		$AnimatedSprite.play("Jump")
+		if(currentposition.y - get_position().y < 0):
+			$AnimatedSprite.play("JumpUp")
+		else:
+			$AnimatedSprite.play("JumpDown")
 	
 	currentposition = move_and_slide(currentposition, Vector2.UP)
 	pass

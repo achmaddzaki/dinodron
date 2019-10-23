@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://bgslider.gd" type="Script" id=1]
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://Sprites/Player/Run3.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=9]
-[ext_resource path="res://bg.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/Jump0.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=10]
+[ext_resource path="res://bg.png" type="Texture" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 32.1974
@@ -24,7 +25,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "Jump",
+"name": "JumpUp",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "JumpDown",
 "speed": 5.0
 } ]
 
@@ -43,20 +49,20 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+visible = false
 z_index = 2
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 frames = SubResource( 3 )
-animation = "Run"
-frame = 3
+animation = "JumpUp"
 playing = true
 
 [node name="background" type="Node" parent="."]
 
 [node name="bg0" type="Sprite" parent="background"]
 editor/display_folded = true
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 centered = false
 __meta__ = {
 "_edit_group_": true,
@@ -72,7 +78,7 @@ shape = SubResource( 2 )
 
 [node name="bg1" type="Sprite" parent="background"]
 editor/display_folded = true
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 centered = false
 offset = Vector2( 800, 0 )
 __meta__ = {
@@ -89,7 +95,7 @@ shape = SubResource( 2 )
 
 [node name="bg2" type="Sprite" parent="background"]
 editor/display_folded = true
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 centered = false
 offset = Vector2( 1600, 0 )
 __meta__ = {
