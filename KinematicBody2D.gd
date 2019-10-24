@@ -18,3 +18,9 @@ func _physics_process(delta):
 	
 	currentposition = move_and_slide(currentposition, Vector2.UP)
 	pass
+
+func _on_Area2D_body_entered(body):
+	print("enter")
+	var label = get_node("../LabelContainer")
+	label.visible = true
+	pass # Replace with function body.

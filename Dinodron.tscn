@@ -1,17 +1,18 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://bgslider.gd" type="Script" id=1]
 [ext_resource path="res://RichTextLabel.gd" type="Script" id=2]
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/Player/Jump0.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/Run0.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/Run1.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/Run2.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/Run3.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Player/Run0.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/Run1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/Run2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/Run3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/Jump0.png" type="Texture" id=11]
 [ext_resource path="res://bg.png" type="Texture" id=12]
+[ext_resource path="res://icon.png" type="Texture" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 32.1974
@@ -19,38 +20,70 @@ height = 2.61838
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "JumpUp",
-"speed": 5.0
+"name": "Run",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "JumpDown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "Run",
-"speed": 10.0
+"name": "JumpUp",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 400, 25.14 )
 
+[sub_resource type="CircleShape2D" id=4]
+radius = 24.0776
+
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+light_mask = 8
 margin_left = 651.0
 margin_top = 6.0
 margin_right = 776.0
 margin_bottom = 46.0
 script = ExtResource( 2 )
 
+[node name="LabelContainer" type="Node2D" parent="."]
+visible = false
+position = Vector2( 387.705, 166.159 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="LabelContainer"]
+modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -68.0
+margin_top = -9.0
+margin_right = 68.0
+margin_bottom = 9.0
+size_flags_stretch_ratio = 0.0
+text = "Game Over"
+align = 1
+uppercase = true
+percent_visible = -0.125
+max_lines_visible = 1
+
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 position = Vector2( 101.117, 178.918 )
 z_index = 1
+collision_layer = 0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -63,13 +96,13 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 frames = SubResource( 2 )
-animation = "Run"
-frame = 4
+animation = "JumpDown"
 playing = true
 
 [node name="background" type="Node" parent="."]
 
 [node name="bg0" type="Sprite" parent="background"]
+editor/display_folded = true
 z_index = -1
 texture = ExtResource( 12 )
 centered = false
@@ -120,3 +153,45 @@ position = Vector2( 400, 400 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="background/bg2/StaticBody2D3"]
 position = Vector2( 1600, -25.27 )
 shape = SubResource( 3 )
+
+[node name="obstacle0" type="Sprite" parent="background"]
+light_mask = 4
+position = Vector2( -40.121, 189.054 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="background/obstacle0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/obstacle0/Area2D"]
+shape = SubResource( 4 )
+
+[node name="obstacle1" type="Sprite" parent="background"]
+light_mask = 4
+position = Vector2( -71.0791, 254.128 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="background/obstacle1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/obstacle1/Area2D"]
+shape = SubResource( 4 )
+
+[node name="obstacle2" type="Sprite" parent="background"]
+light_mask = 4
+position = Vector2( -130.545, 323.846 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="background/obstacle2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/obstacle2/Area2D"]
+shape = SubResource( 4 )
+[connection signal="body_entered" from="background/obstacle0/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="background/obstacle1/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="background/obstacle2/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
