@@ -12,14 +12,8 @@ func setgameover():
 	pass
 
 func _ready():
-	bgs = $background.get_children();
-	obstacles = bgs.duplicate()
-	obstacles.pop_front()
-	obstacles.pop_front()
-	obstacles.pop_front()	
-	bgs.pop_back()
-	bgs.pop_back()
-	bgs.pop_back()
+	bgs = $background.get_children()
+	obstacles = $obstacles.get_children()
 	pass
 	
 func _process(delta):

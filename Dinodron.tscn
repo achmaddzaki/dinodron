@@ -159,7 +159,10 @@ position = Vector2( 400, 400 )
 position = Vector2( 1600, -25.27 )
 shape = SubResource( 3 )
 
-[node name="obstacle0" type="Sprite" parent="background"]
+[node name="obstacles" type="Node" parent="."]
+
+[node name="obstacle0" type="Sprite" parent="obstacles"]
+editor/display_folded = true
 light_mask = 4
 position = Vector2( -40.121, 189.054 )
 texture = ExtResource( 13 )
@@ -167,12 +170,13 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Area2D" type="Area2D" parent="background/obstacle0"]
+[node name="Area2D" type="Area2D" parent="obstacles/obstacle0"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="background/obstacle0/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle0/Area2D"]
 shape = SubResource( 4 )
 
-[node name="obstacle1" type="Sprite" parent="background"]
+[node name="obstacle1" type="Sprite" parent="obstacles"]
+editor/display_folded = true
 light_mask = 4
 position = Vector2( -71.0791, 254.128 )
 texture = ExtResource( 13 )
@@ -180,12 +184,13 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Area2D" type="Area2D" parent="background/obstacle1"]
+[node name="Area2D" type="Area2D" parent="obstacles/obstacle1"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="background/obstacle1/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle1/Area2D"]
 shape = SubResource( 4 )
 
-[node name="obstacle2" type="Sprite" parent="background"]
+[node name="obstacle2" type="Sprite" parent="obstacles"]
+editor/display_folded = true
 light_mask = 4
 position = Vector2( -130.545, 323.846 )
 texture = ExtResource( 13 )
@@ -193,10 +198,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Area2D" type="Area2D" parent="background/obstacle2"]
+[node name="Area2D" type="Area2D" parent="obstacles/obstacle2"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="background/obstacle2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle2/Area2D"]
 shape = SubResource( 4 )
-[connection signal="body_entered" from="background/obstacle0/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="background/obstacle1/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="background/obstacle2/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="obstacles/obstacle0/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="obstacles/obstacle1/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="obstacles/obstacle2/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
