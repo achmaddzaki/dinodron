@@ -5,7 +5,6 @@ const jump_high = 700
 var currentposition = Vector2()
 
 func _physics_process(delta):
-	
 	currentposition.y += gravity
 	if(is_on_floor()):
 		$AnimatedSprite.play("Run")
@@ -20,9 +19,11 @@ func _physics_process(delta):
 	currentposition = move_and_slide(currentposition, Vector2.UP)
 	pass
 
+#Game Over
 func _on_Area2D_body_entered(body):
 	get_node("../LabelContainer").visible = true
 	get_node("..").set_process(false)
+	get_node("../RichTextLabel").set_process(false)
 	$AnimatedSprite.play("Dead")
 	$AnimatedSprite.rotate(-1)
 	set_physics_process(false)
