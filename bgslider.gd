@@ -50,5 +50,19 @@ func _process(delta):
 			vctr.x += bg_width + 200
 			obstacle.set_position(vctr)
 			moving_obstacles.push_back(obstacle)
+	else:
+		if(Input.is_key_pressed(KEY_SPACE)):
+#			Clear Obstacle
+			for obstacle in obstacles:
+				var vctr = obstacle.get_position()
+				vctr.x = -100
+				obstacle.set_position(vctr)
+			moving_obstacles.clear()
+			gameover = false
+			get_node("KinematicBody2D").set_physics_process(true)
+			get_node("KinematicBody2D/AnimatedSprite").rotate(1)
+			get_node("LabelContainer").visible = false
+			get_node("RichTextLabel").set_process(true)
+			get_node("RichTextLabel").score = 0
 	pass
 

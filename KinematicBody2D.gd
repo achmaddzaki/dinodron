@@ -23,7 +23,7 @@ func _physics_process(delta):
 func _on_Area2D_body_entered(body):
 	if(body.name == "KinematicBody2D"):
 		get_node("../LabelContainer").visible = true
-		get_node("..").set_process(false)
+		get_node("..").gameover = true
 		get_node("../RichTextLabel").set_process(false)
 		$AnimatedSprite.play("Dead")
 		$AnimatedSprite.rotate(-1)

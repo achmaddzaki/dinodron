@@ -63,6 +63,7 @@ margin_bottom = 46.0
 script = ExtResource( 2 )
 
 [node name="LabelContainer" type="Node2D" parent="."]
+editor/display_folded = true
 visible = false
 position = Vector2( 387.705, 166.159 )
 __meta__ = {
@@ -87,6 +88,7 @@ percent_visible = -0.125
 max_lines_visible = 1
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 101.117, 178.918 )
 z_index = 1
 collision_layer = 0
@@ -106,6 +108,7 @@ animation = "Dead"
 playing = true
 
 [node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 visible = false
 position = Vector2( 713.626, 191.136 )
 z_index = 1
@@ -124,10 +127,11 @@ shape = SubResource( 1 )
 modulate = Color( 0.592157, 0.980392, 1, 1 )
 frames = SubResource( 2 )
 animation = "Run"
-frame = 1
+frame = 3
 playing = true
 
 [node name="background" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="bg0" type="Sprite" parent="background"]
 editor/display_folded = true
@@ -183,8 +187,10 @@ position = Vector2( 1600, -25.27 )
 shape = SubResource( 3 )
 
 [node name="obstacles" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="obstacle0" type="Sprite" parent="obstacles"]
+editor/display_folded = true
 light_mask = 4
 position = Vector2( -40.121, 189.054 )
 texture = ExtResource( 14 )
@@ -193,11 +199,13 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="obstacles/obstacle0"]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle0/Area2D"]
 shape = SubResource( 4 )
 
 [node name="obstacle1" type="Sprite" parent="obstacles"]
+editor/display_folded = true
 light_mask = 4
 position = Vector2( -71.0791, 254.128 )
 texture = ExtResource( 14 )
@@ -206,11 +214,13 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="obstacles/obstacle1"]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle1/Area2D"]
 shape = SubResource( 4 )
 
 [node name="obstacle2" type="Sprite" parent="obstacles"]
+editor/display_folded = true
 light_mask = 4
 position = Vector2( -130.545, 323.846 )
 texture = ExtResource( 14 )
@@ -219,6 +229,7 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="obstacles/obstacle2"]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle2/Area2D"]
 shape = SubResource( 4 )
