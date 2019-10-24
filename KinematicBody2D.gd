@@ -4,8 +4,18 @@ const gravity = 30
 const jump_high = 700
 var currentposition = Vector2()
 
+var needscaled = true
+
 func _physics_process(delta):
 	currentposition.y += gravity
+	currentposition.x = 0
+	if(needscaled):
+		if(get_node("..").speed > 800):
+			$AnimatedSprite.set_speed_scale(2)
+			needscaled = false
+		elif(get_node("..").speed > 600):
+			$AnimatedSprite.set_speed_scale(1.5)
+		
 	if(is_on_floor()):
 		$AnimatedSprite.play("Run")
 		if(Input.is_action_pressed("ui_up")):

@@ -4,7 +4,7 @@ var bgs = Array()
 var obstacles = Array()
 var moving_obstacles = Array()
 const bg_width = 800
-const speed = 400
+var speed = 400
 var gameover = false
 
 func setgameover():
@@ -17,6 +17,7 @@ func _ready():
 	pass
 	
 func _process(delta):
+	speed += 0.1
 	if(!gameover):
 	# Backgrounds
 		for i in range(bgs.size()):
@@ -59,10 +60,15 @@ func _process(delta):
 				obstacle.set_position(vctr)
 			moving_obstacles.clear()
 			gameover = false
-			get_node("KinematicBody2D").set_physics_process(true)
-			get_node("KinematicBody2D/AnimatedSprite").rotate(1)
+			var player = get_node("KinematicBody2D")
+			player.set_physics_process(true)
+			player.needscaled = true
+			var playeranimation = get_node("KinematicBody2D/AnimatedSprite")
+			playeranimation.rotate(1)
+			playeranimation.set_speed_scale(1)
 			get_node("LabelContainer").visible = false
 			get_node("RichTextLabel").set_process(true)
 			get_node("RichTextLabel").score = 0
+			speed = 400
 	pass
 

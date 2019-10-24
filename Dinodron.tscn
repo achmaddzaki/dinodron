@@ -88,7 +88,6 @@ percent_visible = -0.125
 max_lines_visible = 1
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 101.117, 178.918 )
 z_index = 1
 collision_layer = 0
@@ -127,7 +126,7 @@ shape = SubResource( 1 )
 modulate = Color( 0.592157, 0.980392, 1, 1 )
 frames = SubResource( 2 )
 animation = "Run"
-frame = 3
+frame = 4
 playing = true
 
 [node name="background" type="Node" parent="."]
