@@ -34,6 +34,11 @@ animations = [ {
 "loop": true,
 "name": "JumpUp",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -96,7 +101,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 frames = SubResource( 2 )
-animation = "JumpDown"
+animation = "Dead"
 playing = true
 
 [node name="background" type="Node" parent="."]

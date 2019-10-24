@@ -20,7 +20,8 @@ func _physics_process(delta):
 	pass
 
 func _on_Area2D_body_entered(body):
-	print("enter")
-	var label = get_node("../LabelContainer")
-	label.visible = true
+	get_node("../LabelContainer").visible = true
+	get_node("..").set_process(false)
+	$AnimatedSprite.play("Dead")
+	set_physics_process(false)
 	pass # Replace with function body.
