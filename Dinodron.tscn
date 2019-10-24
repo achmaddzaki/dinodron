@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://bgslider.gd" type="Script" id=1]
 [ext_resource path="res://RichTextLabel.gd" type="Script" id=2]
@@ -11,8 +11,9 @@
 [ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Player/Jump0.png" type="Texture" id=11]
-[ext_resource path="res://bg.png" type="Texture" id=12]
-[ext_resource path="res://icon.png" type="Texture" id=13]
+[ext_resource path="res://KinematicBody2D2.gd" type="Script" id=12]
+[ext_resource path="res://bg.png" type="Texture" id=13]
+[ext_resource path="res://icon.png" type="Texture" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 32.1974
@@ -104,12 +105,34 @@ frames = SubResource( 2 )
 animation = "Dead"
 playing = true
 
+[node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
+visible = false
+position = Vector2( 713.626, 191.136 )
+z_index = 1
+collision_layer = 0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D2"]
+visible = false
+z_index = 2
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D2"]
+modulate = Color( 0.592157, 0.980392, 1, 1 )
+frames = SubResource( 2 )
+animation = "Run"
+frame = 1
+playing = true
+
 [node name="background" type="Node" parent="."]
 
 [node name="bg0" type="Sprite" parent="background"]
 editor/display_folded = true
 z_index = -1
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 centered = false
 __meta__ = {
 "_edit_group_": true,
@@ -126,7 +149,7 @@ shape = SubResource( 3 )
 [node name="bg1" type="Sprite" parent="background"]
 editor/display_folded = true
 z_index = -1
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 centered = false
 offset = Vector2( 800, 0 )
 __meta__ = {
@@ -144,7 +167,7 @@ shape = SubResource( 3 )
 [node name="bg2" type="Sprite" parent="background"]
 editor/display_folded = true
 z_index = -1
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 centered = false
 offset = Vector2( 1600, 0 )
 __meta__ = {
@@ -162,10 +185,9 @@ shape = SubResource( 3 )
 [node name="obstacles" type="Node" parent="."]
 
 [node name="obstacle0" type="Sprite" parent="obstacles"]
-editor/display_folded = true
 light_mask = 4
 position = Vector2( -40.121, 189.054 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -176,10 +198,9 @@ __meta__ = {
 shape = SubResource( 4 )
 
 [node name="obstacle1" type="Sprite" parent="obstacles"]
-editor/display_folded = true
 light_mask = 4
 position = Vector2( -71.0791, 254.128 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -190,10 +211,9 @@ __meta__ = {
 shape = SubResource( 4 )
 
 [node name="obstacle2" type="Sprite" parent="obstacles"]
-editor/display_folded = true
 light_mask = 4
 position = Vector2( -130.545, 323.846 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 __meta__ = {
 "_edit_group_": true
 }

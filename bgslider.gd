@@ -39,9 +39,9 @@ func _process(delta):
 					moving_obstacles.remove(i)
 		else:
 			var obstacle
-			if(rnd < 10):
+			if(rnd < 20):
 				obstacle = obstacles[0]
-			elif(rnd < 20):
+			elif(rnd < 40):
 				obstacle = obstacles[1]
 			else:
 				obstacle = obstacles[2]
