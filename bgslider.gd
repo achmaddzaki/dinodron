@@ -66,7 +66,6 @@ func _process(delta):
 			player.set_physics_process(true)
 			player.needscaled = true
 			var playeranimation = get_node("KinematicBody2D/AnimatedSprite")
-			playeranimation.rotate(1)
 			playeranimation.set_speed_scale(1)
 			get_node("LabelContainer").visible = false
 			get_node("RichTextLabel").set_process(true)

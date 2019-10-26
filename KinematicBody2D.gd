@@ -35,7 +35,6 @@ func _on_Area2D_body_entered(body):
 		get_node("../LabelContainer").visible = true
 		get_node("..").gameover = true
 		get_node("../RichTextLabel").set_process(false)
-		$AnimatedSprite.play("Dead")
-		$AnimatedSprite.rotate(-1)
+		$AnimatedSprite.stop()
 		set_physics_process(false)
 	pass # Replace with function body.

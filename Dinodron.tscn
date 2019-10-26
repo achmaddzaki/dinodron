@@ -1,23 +1,26 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://bgslider.gd" type="Script" id=1]
 [ext_resource path="res://BG.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RichTextLabel.gd" type="Script" id=3]
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=4]
-[ext_resource path="res://Sprites/Player/Jump0.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Player/Run0.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Player/Run1.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Player/Run2.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Player/Run3.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Player/Jump1.png" type="Texture" id=12]
-[ext_resource path="res://KinematicBody2D2.gd" type="Script" id=13]
-[ext_resource path="res://icon.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Player/Jump (5).png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Player/Run (1).png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Player/Run (2).png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Player/Run (3).png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Player/Run (4).png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Player/Run (5).png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Player/Run (6).png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Player/Run (7).png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Player/Run (8).png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Player/Jump (11).png" type="Texture" id=14]
+[ext_resource path="res://icon.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Cactus.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Cactus2.png" type="Texture" id=17]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 32.1974
-height = 2.61838
+radius = 24.39
+height = -1.32249
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -26,24 +29,33 @@ animations = [ {
 "name": "JumpUp",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "Run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "Dead",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "JumpDown",
 "speed": 5.0
 } ]
 
+[sub_resource type="GDScript" id=5]
+script/source = "extends KinematicBody2D
+#
+#const gravity = 30
+#var currentposition = Vector2()
+#
+#func _physics_process(delta):
+#	currentposition.y += gravity
+#	currentposition = move_and_slide(currentposition, Vector2.UP)
+#	pass"
+
 [sub_resource type="CircleShape2D" id=3]
 radius = 24.0776
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24.4144, 25.5426 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 400.15, 10 )
@@ -99,7 +111,7 @@ uppercase = true
 max_lines_visible = 1
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 101.117, 178.918 )
+position = Vector2( 115.511, 309.13 )
 z_index = 1
 collision_layer = 0
 script = ExtResource( 4 )
@@ -108,13 +120,15 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-visible = false
+position = Vector2( -12.547, -3.94336 )
 z_index = 2
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 2 )
-animation = "Dead"
+animation = "Run"
+frame = 3
 playing = true
 
 [node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
@@ -123,7 +137,7 @@ visible = false
 position = Vector2( 713.626, 191.136 )
 z_index = 1
 collision_layer = 0
-script = ExtResource( 13 )
+script = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -141,13 +155,12 @@ frame = 4
 playing = true
 
 [node name="obstacles" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="obstacle0" type="Sprite" parent="obstacles"]
 editor/display_folded = true
 light_mask = 4
-position = Vector2( -40.121, 189.054 )
-texture = ExtResource( 14 )
+position = Vector2( -196.498, 212.469 )
+texture = ExtResource( 15 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -158,35 +171,34 @@ editor/display_folded = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle0/Area2D"]
 shape = SubResource( 3 )
 
-[node name="obstacle1" type="Sprite" parent="obstacles"]
-editor/display_folded = true
-light_mask = 4
-position = Vector2( -71.0791, 254.128 )
-texture = ExtResource( 14 )
+[node name="Area2D" type="Area2D" parent="obstacles"]
+position = Vector2( -27.322, 325.054 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Area2D" type="Area2D" parent="obstacles/obstacle1"]
-editor/display_folded = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle1/Area2D"]
-shape = SubResource( 3 )
-
-[node name="obstacle2" type="Sprite" parent="obstacles"]
-editor/display_folded = true
+[node name="obstacle2" type="Sprite" parent="obstacles/Area2D"]
 light_mask = 4
-position = Vector2( -130.545, 323.846 )
-texture = ExtResource( 14 )
+scale = Vector2( 0.454637, 0.454637 )
+texture = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Area2D"]
+shape = SubResource( 6 )
+
+[node name="Area2D2" type="Area2D" parent="obstacles"]
+position = Vector2( -80, 325.054 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Area2D" type="Area2D" parent="obstacles/obstacle2"]
-editor/display_folded = true
+[node name="obstacle2" type="Sprite" parent="obstacles/Area2D2"]
+light_mask = 4
+position = Vector2( 0.142266, -0.0539656 )
+scale = Vector2( 0.566093, 0.520833 )
+texture = ExtResource( 17 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/obstacle2/Area2D"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Area2D2"]
+shape = SubResource( 6 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 400, 360.95 )
@@ -197,5 +209,5 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 4 )
 [connection signal="body_entered" from="obstacles/obstacle0/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="obstacles/obstacle1/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="obstacles/obstacle2/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="obstacles/Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="obstacles/Area2D2" to="KinematicBody2D" method="_on_Area2D_body_entered"]
