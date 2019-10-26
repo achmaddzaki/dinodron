@@ -23,9 +23,11 @@ func _process(delta):
 		for i in range(bgs.size()):
 			var vctr = bgs[i].get_position()
 			vctr.x -= delta * speed
-			if(vctr.x < -bg_width + (-bg_width * i)):
+#			print(i, " - ", vctr.x)
+			if(vctr.x < -bg_width):
 				vctr.x += bg_width * bgs.size()
 			bgs[i].set_position(vctr)
+		print("\n")
 	
 	# Obstacles
 		var rnd = rand_range(1,100)
